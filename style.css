@@ -308,6 +308,26 @@ article .icon{
     cursor: default;
 }
 
+/* PROJECT EXPERIENCE BOXES */
+
+.project-experience {
+  text-align: center;
+}
+
+.project-experience p {
+  font-size: 0.95rem;
+  color: rgb(85,85,85);
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+.project-experience .project-pic {
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 1.5rem;
+}
+
 /*PROJECTS SECTION*/
 .project-grid {
     display: grid;
