@@ -9,7 +9,7 @@ copy it unless asked to.
 """
 from pathlib import Path
 
-from PIL import Image, ImageOps
+from PIL import Image, ImageDraw, ImageFilter, ImageOps
 
 Image.MAX_IMAGE_PIXELS = None  # the suit headshot is ~100 MP
 
@@ -68,8 +68,18 @@ crop_ratio(suit, 1, cy=0.3).resize((180, 180), Image.LANCZOS).save(
     ROOT / "apple-touch-icon.png", "PNG", optimize=True)
 print("apple-touch-icon.png  180x180")
 
-# Research: poster session, cropped so the projector screen is out of frame.
-poster = crop_frac(load(SRC / "poster.jpg"), 0, 0.23, 1, 1)
+# Research: poster session. Keep all the hair; the projector screen strip
+# to the right of the head is blurred so its thumbnails aren't readable.
+# Mask points are in the 1932x2576 frame and scale to any size of the photo.
+poster = load(SRC / "poster.jpg")
+pw, ph = poster.size
+mask = Image.new("L", poster.size, 0)
+pts = [(1030, 0), (1932, 0), (1932, 494), (1340, 578), (1236, 588),
+       (1203, 552), (1163, 513), (1118, 468), (1030, 458)]
+ImageDraw.Draw(mask).polygon([(x / 1932 * pw, y / 2576 * ph) for x, y in pts], fill=255)
+mask = mask.filter(ImageFilter.GaussianBlur(0.004 * pw))
+poster = Image.composite(poster.filter(ImageFilter.GaussianBlur(0.02 * pw)), poster, mask)
+poster = crop_frac(poster, 0, 0.165, 1, 1)
 save_widths(crop_ratio(poster, 4 / 5, cx=0.6, cy=0), "poster", [480, 800, 1200])
 
 # Experience: the one real work image, 16:10.
