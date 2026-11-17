@@ -68,6 +68,42 @@ new IntersectionObserver(([entry]) => {
   if (entry.isIntersecting) setCurrent('contact');
 }).observe(document.querySelector('.site-footer'));
 
+// In-page links glide to their section. This is done in script because
+// Chrome and Edge on Windows skip CSS smooth scrolling when the system's
+// animation effects are off.
+function glideTo(target) {
+  const start = scrollY;
+  const headerHeight = document.querySelector('.site-header').offsetHeight;
+  const maxScroll = document.documentElement.scrollHeight - innerHeight;
+  const end = Math.max(0, Math.min(maxScroll, target.getBoundingClientRect().top + scrollY - headerHeight));
+  const distance = end - start;
+  const duration = Math.min(900, 400 + Math.abs(distance) / 8);
+  const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
+  const startTime = performance.now();
+
+  requestAnimationFrame(function step(now) {
+    const t = Math.min((now - startTime) / duration, 1);
+    scrollTo({ top: start + distance * ease(t), behavior: 'instant' });
+    if (t < 1) {
+      requestAnimationFrame(step);
+    } else {
+      if (navLinks.has(target.id)) requestAnimationFrame(() => setCurrent(target.id));
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true }); // keyboard and screen-reader users continue from here
+    }
+  });
+}
+
+document.addEventListener('click', (event) => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey) return;
+  const target = document.getElementById(link.hash.slice(1));
+  if (!target) return;
+  event.preventDefault();
+  history.pushState(null, '', link.hash);
+  glideTo(target);
+});
+
 // Scroll reveal: fade content up once as it arrives.
 if (motionOK) {
   const reveal = new IntersectionObserver((entries) => {
