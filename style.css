@@ -1,12 +1,7 @@
-/* ==========================================================================
-   Tokens
-   Palette: "Forest Paper". Paper base, near-black text, forest green for
-   secondary text and solid fills, sage for accents, pale sage for bands.
-   ========================================================================== */
+/* Tokens */
 :root {
   color-scheme: light;
 
-  /* Colour */
   --canvas: #f7f4ea;        /* paper */
   --surface: #dfe8d9;       /* bands: pale sage */
   --raised: #fdfcf7;        /* cards */
@@ -30,10 +25,8 @@
   --on-band-2: #dfe8d9;     /* 7.8:1 on forest */
   --focus: var(--forest);
 
-  /* Type: Minor Third scale from 1rem */
   --font-text: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Newsreader", Georgia, "Times New Roman", serif;
-  --t-meta: 0.75rem;
   --t-secondary: 0.875rem;
   --t-body: 1rem;
   --t-1: 1.2rem;
@@ -46,7 +39,6 @@
   --leading-heading: 1.25;
   --leading-body: 1.55;
 
-  /* Space: 4/8pt */
   --s-1: 4px;
   --s-2: 8px;
   --s-3: 12px;
@@ -55,15 +47,12 @@
   --s-8: 32px;
   --s-12: 48px;
   --s-16: 64px;
-  --s-24: 96px;
   --gutter: var(--s-4);
   --measure: 65ch;
 
-  /* Viewports */
   --vp-wide: 1280px;
   --header-h: 64px;
 
-  /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -71,9 +60,7 @@
   :root { --gutter: var(--s-8); }
 }
 
-/* ==========================================================================
-   Base
-   ========================================================================== */
+/* Base */
 *,
 *::before,
 *::after {
@@ -175,9 +162,7 @@ a {
   transform: none;
 }
 
-/* ==========================================================================
-   Buttons
-   ========================================================================== */
+/* Buttons */
 .button {
   display: inline-flex;
   align-items: center;
@@ -211,9 +196,7 @@ a {
   .button-secondary:hover { border-color: var(--ink); }
 }
 
-/* ==========================================================================
-   Header and navigation (one nav; collapses behind a menu button on narrow)
-   ========================================================================== */
+/* Header and navigation */
 .site-header {
   position: sticky;
   top: 0;
@@ -319,9 +302,7 @@ a {
   }
 }
 
-/* ==========================================================================
-   Hero
-   ========================================================================== */
+/* Hero */
 .hero-photo {
   position: relative;
   overflow: hidden;
@@ -331,7 +312,6 @@ a {
   background: var(--forest);
 }
 
-/* The photo is a button: each click crossfades to the next picture. */
 .photo-button {
   position: absolute;
   inset: 0;
@@ -356,7 +336,6 @@ a {
   object-position: 45% 55%;
 }
 
-/* Message that appears when the photo is clicked (see script.js). */
 .photo-toast {
   position: absolute;
   left: var(--s-4);
@@ -467,8 +446,6 @@ a {
     min-height: 0;
   }
 
-  /* Right side: a warm glow where the photo's sun sits, a faint grid,
-     and a soft light that follows the cursor (see script.js). */
   .hero-backdrop {
     display: block;
     position: relative;
@@ -523,9 +500,7 @@ a {
   }
 }
 
-/* ==========================================================================
-   Sections: heading in a narrow left column, content in a reading column
-   ========================================================================== */
+/* Sections */
 .section {
   width: 100%;
   max-width: var(--vp-wide);
@@ -541,8 +516,6 @@ main > .section {
   border-top: 0;
 }
 
-/* Raised band (L1): full-bleed surface behind a capped section, with no
-   extra wrapper. The shadow paints the band; clip-path keeps it horizontal. */
 .band {
   background: var(--surface);
   box-shadow: 0 0 0 100vmax var(--surface);
@@ -581,7 +554,6 @@ main > .band,
   margin-top: var(--s-4);
 }
 
-/* Shared metadata lines */
 .entry-role {
   margin-top: var(--s-1);
   color: var(--ink-2);
@@ -600,9 +572,7 @@ main > .band,
   content: ",\00a0";
 }
 
-/* ==========================================================================
-   About
-   ========================================================================== */
+/* About */
 .about {
   display: flex;
   flex-wrap: wrap;
@@ -668,9 +638,7 @@ main > .band,
   }
 }
 
-/* ==========================================================================
-   Experience
-   ========================================================================== */
+/* Experience */
 .entries {
   display: grid;
   gap: var(--s-4);
@@ -710,10 +678,7 @@ main > .band,
   border-radius: 6px;
 }
 
-/* ==========================================================================
-   Cards (experience and projects): a raised surface with a soft gold light
-   that follows the cursor on hover. The light is painted, not animated.
-   ========================================================================== */
+/* Cards (experience and projects) */
 .card {
   position: relative;
   isolation: isolate;
@@ -752,9 +717,7 @@ main > .band,
   }
 }
 
-/* ==========================================================================
-   Research
-   ========================================================================== */
+/* Research */
 .research {
   display: flex;
   flex-wrap: wrap;
@@ -788,9 +751,7 @@ main > .band,
   margin-top: var(--s-4);
 }
 
-/* ==========================================================================
-   Projects
-   ========================================================================== */
+/* Projects */
 .projects {
   display: grid;
   gap: var(--s-4);
@@ -814,9 +775,7 @@ main > .band,
   margin-top: var(--s-3);
 }
 
-/* ==========================================================================
-   Contact (navy band)
-   ========================================================================== */
+/* Contact */
 .contact {
   --focus: var(--pale-sage);
   position: relative;
@@ -904,9 +863,7 @@ main > .band,
   }
 }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
+/* Footer */
 .site-footer {
   max-width: var(--vp-wide);
   margin-inline: auto;
@@ -915,19 +872,12 @@ main > .band,
   font-size: var(--t-secondary);
 }
 
-/* ==========================================================================
-   Motion. Everything here is skipped when the visitor asks for reduced motion.
-   Durations stay on the 150 / 200 / 300ms tokens; only opacity and transform
-   animate, except the role highlight, a one-time 300ms draw.
-   ========================================================================== */
+/* Motion */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
 
-  /* Landing sequence (about 1.2s, plays once). This is the one place the
-     page uses longer, choreographed timings: a forest panel lifts off the
-     photo, the photo settles, the name rises out of its line, then the rest. */
   .curtain {
     display: block;
     position: absolute;
@@ -964,7 +914,6 @@ main > .band,
     animation: mark-in 300ms var(--ease-out) 1100ms both;
   }
 
-  /* Pressing the photo gives a slight squeeze; the message rises in. */
   .photo-button img {
     transition: transform 150ms var(--ease-out);
   }
@@ -985,7 +934,6 @@ main > .band,
     transform: none;
   }
 
-  /* Scroll reveal: script.js adds .reveal, then .is-visible once on screen. */
   .reveal {
     opacity: 0;
     transform: translateY(8px);

@@ -63,10 +63,10 @@ navLinks.forEach((_, id) => {
   if (section) spy.observe(section);
 });
 
-// The contact band is short, so mark it once the page is scrolled to the end.
-addEventListener('scroll', () => {
-  if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) setCurrent('contact');
-}, { passive: true });
+// The contact band is short, so mark it once the footer comes into view.
+new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting) setCurrent('contact');
+}).observe(document.querySelector('.site-footer'));
 
 // Scroll reveal: fade content up once as it arrives.
 if (motionOK) {
