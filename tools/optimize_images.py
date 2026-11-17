@@ -53,7 +53,7 @@ rooftop = load(SRC / "rooftop.jpg")
 save_widths(rooftop, "rooftop", [480, 800, 1200, 1600])
 
 # About: the hand-cropped headshot, used at its own ratio.
-save_widths(load(SRC / "headshot-about.jpg"), "headshot", [320, 640, 800, 1200])  # 800/1200 for the hero photo cycle
+save_widths(load(SRC / "headshot-about.jpg"), "headshot", [320, 640])
 
 # The wider original of the same photo, for the social card and touch icon.
 suit = load(SRC / "headshot-suit.jpg")

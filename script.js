@@ -108,35 +108,27 @@ if (motionOK && finePointer) {
   }, { passive: true });
 }
 
-// Hero photo: click or tap to cycle through photos.
-const cycle = document.querySelector('.photo-cycle');
-if (cycle) {
-  const photos = [...cycle.querySelectorAll('img')];
-  const count = cycle.querySelector('.photo-count');
-  const caption = cycle.querySelector('.photo-caption-text');
-  let current = 0;
+// Hero photo: clicking it shows a short thank-you message.
+const photoButton = document.querySelector('.photo-button');
+const toast = document.querySelector('.photo-toast');
+if (photoButton && toast) {
+  const messages = [
+    'Thanks for stopping by.',
+    'Glad you’re here.',
+    'Hope your day’s going well.',
+    'Thanks for visiting. Say hi anytime.',
+  ];
+  let next = 0;
+  let hideTimer;
 
-  const loadAll = () => photos.forEach((img) => {
-    if (img.dataset.srcset) {
-      img.srcset = img.dataset.srcset;
-      delete img.dataset.srcset;
-    }
-  });
-  cycle.addEventListener('pointerenter', loadAll, { once: true });
-  cycle.addEventListener('focus', loadAll, { once: true });
-
-  cycle.addEventListener('click', async () => {
-    loadAll();
-    const nextIndex = (current + 1) % photos.length;
-    const next = photos[nextIndex];
-    try { await next.decode(); } catch { /* show it anyway */ }
-    photos[current].classList.remove('is-active');
-    next.classList.add('is-active');
-    current = nextIndex;
-    const label = next.dataset.caption;
-    count.textContent = `${current + 1}/${photos.length}`;
-    caption.textContent = label;
-    cycle.setAttribute('aria-label', `Photo ${current + 1} of ${photos.length}: ${label}. Show next photo`);
+  photoButton.addEventListener('click', () => {
+    toast.classList.remove('is-shown');
+    void toast.offsetWidth; // restart the entrance if a message is already showing
+    toast.textContent = messages[next];
+    next = (next + 1) % messages.length;
+    toast.classList.add('is-shown');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => toast.classList.remove('is-shown'), 2500);
   });
 }
 

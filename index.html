@@ -55,27 +55,14 @@
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-photo">
-        <!-- Click (or tap) the photo to cycle through these. Extra photos load on first hover or tap. -->
-        <button class="photo-cycle" type="button" aria-label="Photo 1 of 3: Off the clock. Show next photo">
-          <img class="is-active" src="assets/img/rooftop-800.webp"
+        <button class="photo-button" type="button" aria-label="Photo of Amral Baksh on a rooftop. Click for a message.">
+          <img src="assets/img/rooftop-800.webp"
                srcset="assets/img/rooftop-480.webp 480w, assets/img/rooftop-800.webp 800w, assets/img/rooftop-1200.webp 1200w, assets/img/rooftop-1600.webp 1600w"
                sizes="(min-width: 768px) 45vw, 100vw"
-               width="1200" height="1600" fetchpriority="high" alt=""
-               data-caption="Off the clock">
-          <img data-srcset="assets/img/poster-800.webp 800w, assets/img/poster-1200.webp 1200w"
-               sizes="(min-width: 768px) 45vw, 100vw"
-               width="1200" height="1500" alt="" decoding="async"
-               data-caption="Presenting my research at CSTEP">
-          <img data-srcset="assets/img/headshot-800.webp 800w, assets/img/headshot-1200.webp 1200w"
-               sizes="(min-width: 768px) 45vw, 100vw"
-               width="1200" height="1704" alt="" decoding="async"
-               data-caption="Suited up">
-          <span class="photo-caption" aria-hidden="true">
-            <span class="photo-count">1/3</span>
-            <span class="photo-caption-text">Off the clock</span>
-            <svg width="14" height="14" viewBox="0 0 16 16" focusable="false"><path d="M13.5 6.5A5.5 5.5 0 0 0 3.2 4.6M2.5 9.5a5.5 5.5 0 0 0 10.3 1.9M3 1.8v3h3M13 14.2v-3h-3" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
+               width="1200" height="1600" fetchpriority="high"
+               alt="Amral Baksh on a rooftop terrace under an overcast sky, looking out over the city toward the water.">
         </button>
+        <span class="photo-toast" role="status"></span>
         <span class="curtain" aria-hidden="true"></span>
       </div>
       <div class="hero-backdrop" aria-hidden="true"></div>
@@ -186,7 +173,7 @@
                  sizes="(min-width: 768px) 20rem, calc(100vw - 2rem)"
                  width="800" height="1000" loading="lazy" decoding="async"
                  alt="Amral Baksh standing beside his research poster at a poster session.">
-            <figcaption>Presenting this work at a CSTEP poster session, 2026.</figcaption>
+            <figcaption>Presenting this work at a CSTEP research symposium, 2026.</figcaption>
           </figure>
           <div class="research-text">
             <h3>Predicting Prolonged Hospital Stay from Electronic Health Records</h3>
