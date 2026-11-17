@@ -39,5 +39,74 @@ if (copyButton && navigator.clipboard) {
   });
 }
 
+const motionOK = matchMedia('(prefers-reduced-motion: no-preference)').matches;
+const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+// Nav: mark the link for the section in the middle of the screen.
+const navLinks = new Map(
+  [...nav.querySelectorAll('a[href^="#"]')].map((a) => [a.hash.slice(1), a])
+);
+
+function setCurrent(id) {
+  navLinks.forEach((a, key) => {
+    a.classList.toggle('is-current', key === id);
+    if (key === id) a.setAttribute('aria-current', 'location');
+    else a.removeAttribute('aria-current');
+  });
+}
+
+const spy = new IntersectionObserver((entries) => {
+  for (const entry of entries) if (entry.isIntersecting) setCurrent(entry.target.id);
+}, { rootMargin: '-45% 0px -50% 0px' });
+navLinks.forEach((_, id) => {
+  const section = document.getElementById(id);
+  if (section) spy.observe(section);
+});
+
+// The contact band is short, so mark it once the page is scrolled to the end.
+addEventListener('scroll', () => {
+  if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) setCurrent('contact');
+}, { passive: true });
+
+// Scroll reveal: fade content up once as it arrives.
+if (motionOK) {
+  const reveal = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add('is-visible');
+      reveal.unobserve(entry.target);
+    }
+  }, { rootMargin: '0px 0px -8% 0px' });
+
+  document.querySelectorAll(
+    '.section h2, .about, .facts, .entries > li, .research, .project, .contact .section-body'
+  ).forEach((el) => {
+    if (el.classList.contains('project')) {
+      el.style.transitionDelay = `${[...el.parentElement.children].indexOf(el) % 2 * 60}ms`;
+    }
+    el.classList.add('reveal');
+    reveal.observe(el);
+  });
+}
+
+// Cursor light on the hero and on cards (mouse only).
+if (motionOK && finePointer) {
+  document.documentElement.classList.add('has-glow');
+  const backdrop = document.querySelector('.hero-backdrop');
+
+  document.addEventListener('pointermove', (event) => {
+    const card = event.target.closest('.card');
+    if (card) {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--x', `${event.clientX - r.left}px`);
+      card.style.setProperty('--y', `${event.clientY - r.top}px`);
+    } else if (backdrop && event.target.closest('.hero')) {
+      const r = backdrop.getBoundingClientRect();
+      backdrop.style.setProperty('--mx', `${event.clientX - r.left}px`);
+      backdrop.style.setProperty('--my', `${event.clientY - r.top}px`);
+    }
+  }, { passive: true });
+}
+
 // Footer year.
 document.querySelector('[data-year]').textContent = new Date().getFullYear();

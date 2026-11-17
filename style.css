@@ -7,6 +7,10 @@
   /* Colour */
   --canvas: #ecedea;        /* overcast sky */
   --surface: #f6f6f2;       /* cream sweater, lit */
+  --raised: #fcfcf9;        /* cards sitting on a band */
+  --grid-line: rgb(38 44 49 / 0.07);
+  --glow: rgb(226 196 110 / 0.28); /* the sun, as light */
+  --marker: rgb(226 196 110 / 0.6);
   --ink: #262c31;           /* slate shadow */
   --ink-2: #545c63;         /* slate, secondary text (5.8:1 on canvas) */
   --rule: rgb(38 44 49 / 0.14);
@@ -50,6 +54,7 @@
 
   /* Viewports */
   --vp-wide: 1280px;
+  --header-h: 64px;
 
   /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -73,6 +78,7 @@
 }
 
 html {
+  scroll-padding-top: var(--header-h);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -179,6 +185,9 @@ a {
 }
 
 .button-primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   background: var(--accent);
   border-color: var(--accent-deep);
   color: var(--ink);
@@ -199,8 +208,10 @@ a {
    Header and navigation (one nav; collapses behind a menu button on narrow)
    ========================================================================== */
 .site-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 10;
+  background: var(--canvas);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -236,6 +247,13 @@ a {
   font-weight: 500;
   font-size: var(--t-secondary);
   text-decoration: none;
+}
+
+.site-nav a.is-current {
+  text-decoration-line: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.45em;
 }
 
 @media (hover: hover) {
@@ -316,6 +334,23 @@ a {
   letter-spacing: -0.01em;
 }
 
+.name-accent {
+  color: var(--denim);
+}
+
+.mark {
+  background-image: linear-gradient(var(--marker), var(--marker));
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 100% 0.34em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.hero-backdrop {
+  display: none;
+}
+
 .hero-role {
   margin-top: var(--s-3);
   font-family: var(--font-display);
@@ -343,8 +378,52 @@ a {
     min-height: min(88vh, 56rem);
   }
 
+  .hero {
+    overflow: hidden;
+  }
+
   .hero-photo {
     position: relative;
+    grid-area: 1 / 1;
+  }
+
+  /* Right side: a warm glow where the photo's sun sits, a faint grid,
+     and a soft light that follows the cursor (see script.js). */
+  .hero-backdrop {
+    display: block;
+    position: relative;
+    grid-area: 1 / 2;
+    overflow: hidden;
+    background: radial-gradient(circle at 0% 14%, rgb(226 196 110 / 0.14), transparent 38%);
+  }
+
+  .hero-backdrop::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 75% 70% at 45% 65%, #000 15%, transparent 75%);
+    mask-image: radial-gradient(ellipse 75% 70% at 45% 65%, #000 15%, transparent 75%);
+  }
+
+  .hero-backdrop::after {
+    content: "";
+    position: absolute;
+    top: -18rem;
+    left: -18rem;
+    width: 36rem;
+    height: 36rem;
+    background: radial-gradient(closest-side, var(--glow), transparent);
+    transform: translate(var(--mx, 0px), var(--my, 0px));
+    opacity: 0;
+    transition: opacity 300ms var(--ease-out);
+  }
+
+  .has-glow .hero:hover .hero-backdrop::after {
+    opacity: 1;
   }
 
   .hero-photo img {
@@ -355,6 +434,8 @@ a {
   }
 
   .hero-text {
+    position: relative;
+    grid-area: 1 / 2;
     align-self: end;
     max-width: 40rem;
     padding: var(--s-16) var(--s-12);
@@ -459,6 +540,9 @@ main > .band,
 .about-photo {
   flex: 0 0 auto;
   width: 10rem;
+  margin: var(--s-2);
+  outline: 1px solid var(--accent);
+  outline-offset: var(--s-2);
 }
 
 .about .prose {
@@ -514,14 +598,9 @@ main > .band,
 /* ==========================================================================
    Experience
    ========================================================================== */
-.entries > li {
-  padding-block: var(--s-8);
-  border-top: 1px solid var(--rule);
-}
-
-.entries > li:first-child {
-  padding-top: 0;
-  border-top: 0;
+.entries {
+  display: grid;
+  gap: var(--s-4);
 }
 
 .entry {
@@ -555,7 +634,49 @@ main > .band,
   width: 14rem;
   aspect-ratio: 16 / 10;
   object-fit: cover;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   Cards (experience and projects): a raised surface with a soft gold light
+   that follows the cursor on hover. The light is painted, not animated.
+   ========================================================================== */
+.card {
+  position: relative;
+  isolation: isolate;
+  padding: var(--s-6);
+  background: var(--raised);
   border: 1px solid var(--rule);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgb(38 44 49 / 0.04);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(22rem circle at var(--x, 50%) var(--y, 50%), var(--glow), transparent 65%);
+  opacity: 0;
+  transition: opacity 200ms var(--ease-out);
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .card:hover {
+    border-color: var(--rule-strong);
+  }
+
+  .has-glow .card:hover::before {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: var(--s-8);
+  }
 }
 
 /* ==========================================================================
@@ -574,6 +695,7 @@ main > .band,
 
 .research-photo img {
   width: 100%;
+  border-radius: 8px;
   aspect-ratio: 4 / 5;
   object-fit: cover;
 }
@@ -598,16 +720,11 @@ main > .band,
    ========================================================================== */
 .projects {
   display: grid;
-  gap: var(--s-8) var(--s-12);
+  gap: var(--s-4);
 }
 
 @media (min-width: 768px) {
   .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-.project {
-  padding-top: var(--s-4);
-  border-top: 1px solid var(--rule-strong);
 }
 
 .project h3 {
@@ -629,8 +746,23 @@ main > .band,
    ========================================================================== */
 .contact {
   --focus: var(--accent);
+  position: relative;
+  isolation: isolate;
   background: var(--denim);
   color: var(--on-denim);
+}
+
+.contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgb(246 246 242 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(246 246 242 / 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: linear-gradient(to left, #000, transparent 70%);
+  mask-image: linear-gradient(to left, #000, transparent 70%);
 }
 
 .contact .section {
@@ -711,8 +843,9 @@ main > .band,
 }
 
 /* ==========================================================================
-   Motion: one entrance for the hero text; nothing on scroll.
-   Only runs when the visitor hasn't asked for reduced motion.
+   Motion. Everything here is skipped when the visitor asks for reduced motion.
+   Durations stay on the 150 / 200 / 300ms tokens; only opacity and transform
+   animate, except the role highlight, a one-time 300ms draw.
    ========================================================================== */
 @media (prefers-reduced-motion: no-preference) {
   html {
@@ -723,9 +856,43 @@ main > .band,
     animation: rise 300ms var(--ease-out) both;
   }
 
-  .hero-text > :nth-child(2) { animation-delay: 30ms; }
-  .hero-text > :nth-child(3) { animation-delay: 60ms; }
-  .hero-text > :nth-child(4) { animation-delay: 90ms; }
+  .hero-text > :nth-child(2) { animation-delay: 60ms; }
+  .hero-text > :nth-child(3) { animation-delay: 120ms; }
+  .hero-text > :nth-child(4) { animation-delay: 180ms; }
+
+  .mark {
+    animation: mark-in 300ms var(--ease-out) 450ms both;
+  }
+
+  /* Scroll reveal: script.js adds .reveal, then .is-visible once on screen. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 300ms var(--ease-out),
+      transform 300ms var(--ease-out);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .button-primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.5) 50%, transparent 70%);
+    transform: translateX(-100%);
+  }
+
+  @media (hover: hover) {
+    .button-primary:hover::after {
+      transform: translateX(100%);
+      transition: transform 300ms var(--ease-out);
+    }
+  }
 
   .js .site-nav.is-open {
     animation: fade 150ms var(--ease-out);
@@ -736,6 +903,12 @@ main > .band,
   from {
     opacity: 0;
     transform: translateY(8px);
+  }
+}
+
+@keyframes mark-in {
+  from {
+    background-size: 0% 0.34em;
   }
 }
 
