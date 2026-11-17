@@ -52,9 +52,11 @@ def save_widths(im, name, widths, quality=78):
 rooftop = load(SRC / "rooftop.jpg")
 save_widths(rooftop, "rooftop", [480, 800, 1200, 1600])
 
-# About: suit headshot, 4:5 head-and-shoulders.
+# About: the hand-cropped headshot, used at its own ratio.
+save_widths(load(SRC / "headshot-about.jpg"), "headshot", [320, 640])
+
+# The wider original of the same photo, for the social card and touch icon.
 suit = load(SRC / "headshot-suit.jpg")
-save_widths(crop_ratio(suit, 4 / 5, cy=0.42), "headshot", [320, 640])
 
 # Open Graph / Twitter card: 1200x630 JPEG (broadest crawler support).
 og = crop_ratio(suit, 1200 / 630, cy=0.36).resize((1200, 630), Image.LANCZOS)
