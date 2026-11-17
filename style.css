@@ -1,29 +1,32 @@
 /* ==========================================================================
    Tokens
-   Palette: "Midnight Linen". Midnight base, navy surfaces, linen text,
-   taupe for secondary text, terracotta as the single accent.
+   Palette: "Terracotta Proof". Espresso base, cream text, terracotta as the
+   accent, brown for the landing reveal, dark teal for the contact band.
    ========================================================================== */
 :root {
   color-scheme: dark;
 
   /* Colour */
-  --canvas: #0b1320;        /* midnight */
-  --surface: #121b2d;       /* bands: midnight lifted toward navy */
-  --raised: #1f2a44;        /* navy: cards */
-  --ink: #f2efe8;           /* linen (16:1 on midnight) */
-  --ink-2: #c7b8a6;         /* taupe, secondary text (9.6:1 on midnight, 7.4:1 on navy) */
-  --rule: rgb(242 239 232 / 0.1);
-  --rule-strong: rgb(242 239 232 / 0.24);
-  --grid-line: rgb(242 239 232 / 0.05);
-  --accent: #b46a55;        /* terracotta: fills, underlines, frame */
-  --accent-hover: #c77e68;
-  --accent-text: #cf8a73;   /* terracotta lifted for text on dark (6.7:1 / 5.1:1) */
-  --on-accent: #0b1320;     /* midnight on terracotta (4.6:1) */
-  --glow: rgb(180 106 85 / 0.22);
+  --canvas: #2a1f1a;        /* espresso */
+  --surface: #31241e;       /* bands: espresso, lifted */
+  --raised: #3a2b24;        /* cards */
+  --brown: #6b3f2a;
+  --teal: #2f4f4f;
+  --ink: #f3e9df;           /* cream (13.4:1 on espresso) */
+  --ink-2: #d2c2b3;         /* cream, muted: secondary text (9.3:1; 5.2:1 on teal) */
+  --rule: rgb(243 233 223 / 0.1);
+  --rule-strong: rgb(243 233 223 / 0.24);
+  --grid-line: rgb(243 233 223 / 0.05);
+  --accent: #c56b45;        /* terracotta: underlines, frames, glow */
+  --accent-fill: #cf744d;   /* terracotta for button fills (espresso label 4.8:1) */
+  --accent-hover: #d77e58;
+  --accent-text: #e0906c;   /* terracotta lifted for text (6.4:1; 5.4:1 on cards) */
+  --on-accent: #2a1f1a;
+  --glow: rgb(197 107 69 / 0.2);
   --marker: var(--accent);
-  --band-strong: #1f2a44;   /* contact band */
-  --on-band: #f2efe8;
-  --on-band-2: #c7b8a6;
+  --band-strong: var(--teal);
+  --on-band: #f3e9df;
+  --on-band-2: #d2c2b3;
   --focus: var(--accent-text);
 
   /* Type: Minor Third scale from 1rem */
@@ -191,8 +194,8 @@ a {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--accent-fill);
+  border-color: var(--accent-fill);
   color: var(--on-accent);
 }
 
@@ -318,13 +321,82 @@ a {
 /* ==========================================================================
    Hero
    ========================================================================== */
-.hero-photo img {
-  width: 100%;
+.hero-photo {
+  position: relative;
+  overflow: hidden;
   height: 52vh;
   height: 52svh;
   min-height: 20rem;
+  background: var(--brown);
+}
+
+/* The photo is a button: each click crossfades to the next picture. */
+.photo-cycle {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.photo-cycle:focus-visible {
+  outline-offset: -6px;
+}
+
+.photo-cycle img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: 50% 30%;
+  opacity: 0;
+}
+
+.photo-cycle img:first-child {
   object-position: 45% 55%;
+}
+
+.photo-cycle img.is-active {
+  opacity: 1;
+}
+
+.photo-caption {
+  position: absolute;
+  left: var(--s-4);
+  bottom: var(--s-4);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-1) var(--s-3);
+  border-radius: 999px;
+  background: rgb(42 31 26 / 0.8);
+  color: var(--ink);
+  font-size: var(--t-secondary);
+  line-height: 1.6;
+}
+
+.photo-count {
+  color: var(--accent-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.curtain {
+  display: none;
+}
+
+.hero h1 .w {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  vertical-align: top;
+}
+
+.hero h1 .w > span {
+  display: inline-block;
 }
 
 .hero-text {
@@ -386,8 +458,9 @@ a {
   }
 
   .hero-photo {
-    position: relative;
     grid-area: 1 / 1;
+    height: auto;
+    min-height: 0;
   }
 
   /* Right side: a warm glow where the photo's sun sits, a faint grid,
@@ -397,7 +470,7 @@ a {
     position: relative;
     grid-area: 1 / 2;
     overflow: hidden;
-    background: radial-gradient(circle at 0% 14%, rgb(199 184 166 / 0.08), transparent 38%);
+    background: radial-gradient(circle at 0% 14%, rgb(197 107 69 / 0.1), transparent 38%);
   }
 
   .hero-backdrop::before {
@@ -427,13 +500,6 @@ a {
 
   .has-glow .hero:hover .hero-backdrop::after {
     opacity: 1;
-  }
-
-  .hero-photo img {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    min-height: 0;
   }
 
   .hero-text {
@@ -761,8 +827,8 @@ main > .band,
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(to right, rgb(242 239 232 / 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(242 239 232 / 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgb(243 233 223 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(243 233 223 / 0.07) 1px, transparent 1px);
   background-size: 56px 56px;
   -webkit-mask-image: linear-gradient(to left, #000, transparent 70%);
   mask-image: linear-gradient(to left, #000, transparent 70%);
@@ -792,7 +858,7 @@ main > .band,
 }
 
 .contact .button-secondary {
-  border-color: rgb(242 239 232 / 0.4);
+  border-color: rgb(243 233 223 / 0.45);
   color: var(--on-band);
 }
 
@@ -855,16 +921,62 @@ main > .band,
     scroll-behavior: smooth;
   }
 
-  .hero-text > * {
+  /* Landing sequence (about 1.2s, plays once). This is the one place the
+     page uses longer, choreographed timings: a brown panel lifts off the
+     photo, the photo settles, the name rises out of its line, then the rest. */
+  .curtain {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: var(--brown);
+    pointer-events: none;
+    animation: curtain 700ms cubic-bezier(0.7, 0, 0.2, 1) 150ms both;
+  }
+
+  .photo-cycle {
+    animation: settle 1100ms var(--ease-out) 150ms both;
+  }
+
+  .hero h1 .w > span {
+    animation: word-up 600ms var(--ease-out) 450ms both;
+  }
+
+  .hero h1 .w + .w > span {
+    animation-delay: 540ms;
+  }
+
+  .hero-role,
+  .hero-line,
+  .actions,
+  .photo-caption {
     animation: rise 300ms var(--ease-out) both;
   }
 
-  .hero-text > :nth-child(2) { animation-delay: 60ms; }
-  .hero-text > :nth-child(3) { animation-delay: 120ms; }
-  .hero-text > :nth-child(4) { animation-delay: 180ms; }
+  .hero-role { animation-delay: 700ms; }
+  .hero-line { animation-delay: 780ms; }
+  .actions { animation-delay: 860ms; }
+  .photo-caption { animation-delay: 1000ms; }
 
   .mark {
-    animation: mark-in 300ms var(--ease-out) 450ms both;
+    animation: mark-in 300ms var(--ease-out) 1100ms both;
+  }
+
+  /* Photo switching: crossfade, with the new picture settling into place. */
+  .photo-cycle img {
+    transform: scale(1.04);
+    transition:
+      opacity 300ms var(--ease-out),
+      transform 600ms var(--ease-out);
+  }
+
+  .photo-cycle img.is-active {
+    transform: none;
+  }
+
+  .photo-cycle:active img.is-active {
+    transform: scale(0.985);
+    transition-duration: 100ms;
   }
 
   /* Scroll reveal: script.js adds .reveal, then .is-visible once on screen. */
@@ -906,6 +1018,24 @@ main > .band,
   from {
     opacity: 0;
     transform: translateY(8px);
+  }
+}
+
+@keyframes curtain {
+  to {
+    transform: translateY(-101%);
+  }
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes word-up {
+  from {
+    transform: translateY(105%);
   }
 }
 

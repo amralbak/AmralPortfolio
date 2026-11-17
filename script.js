@@ -108,5 +108,37 @@ if (motionOK && finePointer) {
   }, { passive: true });
 }
 
+// Hero photo: click or tap to cycle through photos.
+const cycle = document.querySelector('.photo-cycle');
+if (cycle) {
+  const photos = [...cycle.querySelectorAll('img')];
+  const count = cycle.querySelector('.photo-count');
+  const caption = cycle.querySelector('.photo-caption-text');
+  let current = 0;
+
+  const loadAll = () => photos.forEach((img) => {
+    if (img.dataset.srcset) {
+      img.srcset = img.dataset.srcset;
+      delete img.dataset.srcset;
+    }
+  });
+  cycle.addEventListener('pointerenter', loadAll, { once: true });
+  cycle.addEventListener('focus', loadAll, { once: true });
+
+  cycle.addEventListener('click', async () => {
+    loadAll();
+    const nextIndex = (current + 1) % photos.length;
+    const next = photos[nextIndex];
+    try { await next.decode(); } catch { /* show it anyway */ }
+    photos[current].classList.remove('is-active');
+    next.classList.add('is-active');
+    current = nextIndex;
+    const label = next.dataset.caption;
+    count.textContent = `${current + 1}/${photos.length}`;
+    caption.textContent = label;
+    cycle.setAttribute('aria-label', `Photo ${current + 1} of ${photos.length}: ${label}. Show next photo`);
+  });
+}
+
 // Footer year.
 document.querySelector('[data-year]').textContent = new Date().getFullYear();
