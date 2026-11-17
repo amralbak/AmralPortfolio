@@ -1,33 +1,33 @@
 /* ==========================================================================
    Tokens
-   Palette: "Terracotta Proof". Espresso base, cream text, terracotta as the
-   accent, brown for the landing reveal, dark teal for the contact band.
+   Palette: "Soft Peach Grid". Off-white base, charcoal text, slate for
+   secondary text, peach for highlights and bands, tan for accents.
    ========================================================================== */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
   /* Colour */
-  --canvas: #2a1f1a;        /* espresso */
-  --surface: #31241e;       /* bands: espresso, lifted */
-  --raised: #3a2b24;        /* cards */
-  --brown: #6b3f2a;
-  --teal: #2f4f4f;
-  --ink: #f3e9df;           /* cream (13.4:1 on espresso) */
-  --ink-2: #d2c2b3;         /* cream, muted: secondary text (9.3:1; 5.2:1 on teal) */
-  --rule: rgb(243 233 223 / 0.1);
-  --rule-strong: rgb(243 233 223 / 0.24);
-  --grid-line: rgb(243 233 223 / 0.05);
-  --accent: #c56b45;        /* terracotta: underlines, frames, glow */
-  --accent-fill: #cf744d;   /* terracotta for button fills (espresso label 4.8:1) */
-  --accent-hover: #d77e58;
-  --accent-text: #e0906c;   /* terracotta lifted for text (6.4:1; 5.4:1 on cards) */
-  --on-accent: #2a1f1a;
-  --glow: rgb(197 107 69 / 0.2);
-  --marker: var(--accent);
-  --band-strong: var(--teal);
-  --on-band: #f3e9df;
-  --on-band-2: #d2c2b3;
-  --focus: var(--accent-text);
+  --canvas: #f8f4f0;        /* off-white */
+  --surface: #fbf0ea;       /* bands: off-white warmed with peach */
+  --raised: #ffffff;        /* cards */
+  --peach: #f6d6c9;
+  --tan: #d0a37f;
+  --ink: #2b2f3a;           /* charcoal (12.2:1 on off-white) */
+  --ink-2: #5d6472;         /* slate, secondary text (5.4:1; 5.3:1 on bands) */
+  --rule: rgb(43 47 58 / 0.1);
+  --rule-strong: rgb(43 47 58 / 0.24);
+  --grid-line: rgb(43 47 58 / 0.06);
+  --accent: var(--tan);     /* underlines, frames, landing panel */
+  --accent-fill: var(--tan);/* button fill, charcoal label (5.9:1) */
+  --accent-hover: #c4946e;
+  --accent-text: var(--ink-2); /* accent-coloured text, e.g. "Baksh" */
+  --on-accent: #2b2f3a;
+  --glow: rgb(246 214 201 / 0.75);  /* peach light under the cursor */
+  --marker: var(--peach);
+  --band-strong: #2b2f3a;   /* contact band */
+  --on-band: #f8f4f0;
+  --on-band-2: #d4ccc6;     /* 8.4:1 on charcoal */
+  --focus: var(--ink-2);
 
   /* Type: Minor Third scale from 1rem */
   --font-text: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -138,8 +138,8 @@ a {
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--on-accent);
+  background: var(--peach);
+  color: var(--ink);
 }
 
 .secondary {
@@ -327,7 +327,7 @@ a {
   height: 52vh;
   height: 52svh;
   min-height: 20rem;
-  background: var(--brown);
+  background: var(--tan);
 }
 
 /* The photo is a button: each click crossfades to the next picture. */
@@ -367,8 +367,8 @@ a {
   max-width: calc(100% - 2 * var(--s-4));
   padding: var(--s-2) var(--s-4);
   border-radius: 999px;
-  background: rgb(42 31 26 / 0.88);
-  color: var(--ink);
+  background: rgb(43 47 58 / 0.9);
+  color: var(--on-band);
   font-size: var(--t-secondary);
   pointer-events: none;
   opacity: 0;
@@ -380,7 +380,7 @@ a {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent-text);
+  background: var(--tan);
 }
 
 .photo-toast.is-shown {
@@ -419,8 +419,8 @@ a {
 .mark {
   background-image: linear-gradient(var(--marker), var(--marker));
   background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 100% 0.14em;
+  background-position: 0 88%;
+  background-size: 100% 0.42em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -473,7 +473,7 @@ a {
     position: relative;
     grid-area: 1 / 2;
     overflow: hidden;
-    background: radial-gradient(circle at 0% 14%, rgb(197 107 69 / 0.1), transparent 38%);
+    background: radial-gradient(circle at 0% 14%, rgb(246 214 201 / 0.55), transparent 38%);
   }
 
   .hero-backdrop::before {
@@ -720,7 +720,7 @@ main > .band,
   background: var(--raised);
   border: 1px solid var(--rule);
   border-radius: 12px;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.3);
+  box-shadow: 0 1px 2px rgb(43 47 58 / 0.06);
 }
 
 .card::before {
@@ -817,7 +817,7 @@ main > .band,
    Contact (navy band)
    ========================================================================== */
 .contact {
-  --focus: var(--accent-text);
+  --focus: var(--tan);
   position: relative;
   isolation: isolate;
   background: var(--band-strong);
@@ -830,8 +830,8 @@ main > .band,
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(to right, rgb(243 233 223 / 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(243 233 223 / 0.07) 1px, transparent 1px);
+    linear-gradient(to right, rgb(248 244 240 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(248 244 240 / 0.07) 1px, transparent 1px);
   background-size: 56px 56px;
   -webkit-mask-image: linear-gradient(to left, #000, transparent 70%);
   mask-image: linear-gradient(to left, #000, transparent 70%);
@@ -861,7 +861,7 @@ main > .band,
 }
 
 .contact .button-secondary {
-  border-color: rgb(243 233 223 / 0.45);
+  border-color: rgb(248 244 240 / 0.45);
   color: var(--on-band);
 }
 
@@ -925,14 +925,14 @@ main > .band,
   }
 
   /* Landing sequence (about 1.2s, plays once). This is the one place the
-     page uses longer, choreographed timings: a brown panel lifts off the
+     page uses longer, choreographed timings: a tan panel lifts off the
      photo, the photo settles, the name rises out of its line, then the rest. */
   .curtain {
     display: block;
     position: absolute;
     inset: 0;
     z-index: 2;
-    background: var(--brown);
+    background: var(--tan);
     pointer-events: none;
     animation: curtain 700ms cubic-bezier(0.7, 0, 0.2, 1) 150ms both;
   }
@@ -1003,7 +1003,7 @@ main > .band,
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.3) 50%, transparent 70%);
+    background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.45) 50%, transparent 70%);
     transform: translateX(-100%);
   }
 
@@ -1046,7 +1046,7 @@ main > .band,
 
 @keyframes mark-in {
   from {
-    background-size: 0% 0.14em;
+    background-size: 0% 0.42em;
   }
 }
 
