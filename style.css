@@ -387,6 +387,19 @@ main > .section {
   border-top: 0;
 }
 
+/* Raised band (L1): full-bleed surface behind a capped section, with no
+   extra wrapper. The shadow paints the band; clip-path keeps it horizontal. */
+.band {
+  background: var(--surface);
+  box-shadow: 0 0 0 100vmax var(--surface);
+  clip-path: inset(0 -100vmax);
+}
+
+main > .band,
+.band + .section {
+  border-top: 0;
+}
+
 .section h2 {
   margin-bottom: var(--s-6);
   font-size: var(--t-4);
@@ -719,9 +732,9 @@ main > .section {
     animation: rise 300ms var(--ease-out) both;
   }
 
-  .hero-text > :nth-child(2) { animation-delay: 100ms; }
-  .hero-text > :nth-child(3) { animation-delay: 150ms; }
-  .hero-text > :nth-child(4) { animation-delay: 200ms; }
+  .hero-text > :nth-child(2) { animation-delay: 30ms; }
+  .hero-text > :nth-child(3) { animation-delay: 60ms; }
+  .hero-text > :nth-child(4) { animation-delay: 90ms; }
 
   .js .site-nav.is-open {
     animation: fade 150ms var(--ease-out);
