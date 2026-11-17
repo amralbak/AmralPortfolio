@@ -72,6 +72,7 @@
 }
 
 html {
+  scroll-behavior: smooth; /* nav links glide to their section, as on the old site */
   scroll-padding-top: var(--header-h);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -874,10 +875,6 @@ main > .band,
 
 /* Motion */
 @media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-
   .curtain {
     display: block;
     position: absolute;
