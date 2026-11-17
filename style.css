@@ -1,27 +1,30 @@
 /* ==========================================================================
    Tokens
-   Palette sampled from the rooftop photo: overcast sky, cream sweater,
-   slate shadow, light denim, and one accent from the sun (pale gold).
+   Palette: "Midnight Linen". Midnight base, navy surfaces, linen text,
+   taupe for secondary text, terracotta as the single accent.
    ========================================================================== */
 :root {
+  color-scheme: dark;
+
   /* Colour */
-  --canvas: #ecedea;        /* overcast sky */
-  --surface: #f6f6f2;       /* cream sweater, lit */
-  --raised: #fcfcf9;        /* cards sitting on a band */
-  --grid-line: rgb(38 44 49 / 0.07);
-  --glow: rgb(226 196 110 / 0.28); /* the sun, as light */
-  --marker: rgb(226 196 110 / 0.6);
-  --ink: #262c31;           /* slate shadow */
-  --ink-2: #545c63;         /* slate, secondary text (5.8:1 on canvas) */
-  --rule: rgb(38 44 49 / 0.14);
-  --rule-strong: rgb(38 44 49 / 0.35);
-  --denim: #3e5468;         /* contact band */
-  --on-denim: #f6f6f2;
-  --on-denim-2: #d5dbe0;
-  --accent: #e2c46e;        /* pale sun gold: fills, underlines */
-  --accent-hover: #d6b65a;
-  --accent-deep: #7a5c14;   /* same hue, for focus rings on light (5.3:1) */
-  --focus: var(--accent-deep);
+  --canvas: #0b1320;        /* midnight */
+  --surface: #121b2d;       /* bands: midnight lifted toward navy */
+  --raised: #1f2a44;        /* navy: cards */
+  --ink: #f2efe8;           /* linen (16:1 on midnight) */
+  --ink-2: #c7b8a6;         /* taupe, secondary text (9.6:1 on midnight, 7.4:1 on navy) */
+  --rule: rgb(242 239 232 / 0.1);
+  --rule-strong: rgb(242 239 232 / 0.24);
+  --grid-line: rgb(242 239 232 / 0.05);
+  --accent: #b46a55;        /* terracotta: fills, underlines, frame */
+  --accent-hover: #c77e68;
+  --accent-text: #cf8a73;   /* terracotta lifted for text on dark (6.7:1 / 5.1:1) */
+  --on-accent: #0b1320;     /* midnight on terracotta (4.6:1) */
+  --glow: rgb(180 106 85 / 0.22);
+  --marker: var(--accent);
+  --band-strong: #1f2a44;   /* contact band */
+  --on-band: #f2efe8;
+  --on-band-2: #c7b8a6;
+  --focus: var(--accent-text);
 
   /* Type: Minor Third scale from 1rem */
   --font-text: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -133,7 +136,7 @@ a {
 
 ::selection {
   background: var(--accent);
-  color: var(--ink);
+  color: var(--on-accent);
 }
 
 .secondary {
@@ -189,8 +192,8 @@ a {
   overflow: hidden;
   isolation: isolate;
   background: var(--accent);
-  border-color: var(--accent-deep);
-  color: var(--ink);
+  border-color: var(--accent);
+  color: var(--on-accent);
 }
 
 .button-secondary {
@@ -200,7 +203,7 @@ a {
 }
 
 @media (hover: hover) {
-  .button-primary:hover { background: var(--accent-hover); }
+  .button-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
   .button-secondary:hover { border-color: var(--ink); }
 }
 
@@ -335,14 +338,14 @@ a {
 }
 
 .name-accent {
-  color: var(--denim);
+  color: var(--accent-text);
 }
 
 .mark {
   background-image: linear-gradient(var(--marker), var(--marker));
   background-repeat: no-repeat;
-  background-position: 0 88%;
-  background-size: 100% 0.34em;
+  background-position: 0 100%;
+  background-size: 100% 0.14em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -394,7 +397,7 @@ a {
     position: relative;
     grid-area: 1 / 2;
     overflow: hidden;
-    background: radial-gradient(circle at 0% 14%, rgb(226 196 110 / 0.14), transparent 38%);
+    background: radial-gradient(circle at 0% 14%, rgb(199 184 166 / 0.08), transparent 38%);
   }
 
   .hero-backdrop::before {
@@ -648,7 +651,7 @@ main > .band,
   background: var(--raised);
   border: 1px solid var(--rule);
   border-radius: 12px;
-  box-shadow: 0 1px 2px rgb(38 44 49 / 0.04);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.3);
 }
 
 .card::before {
@@ -742,14 +745,14 @@ main > .band,
 }
 
 /* ==========================================================================
-   Contact (the one dark band, in denim)
+   Contact (navy band)
    ========================================================================== */
 .contact {
-  --focus: var(--accent);
+  --focus: var(--accent-text);
   position: relative;
   isolation: isolate;
-  background: var(--denim);
-  color: var(--on-denim);
+  background: var(--band-strong);
+  color: var(--on-band);
 }
 
 .contact::before {
@@ -758,8 +761,8 @@ main > .band,
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(to right, rgb(246 246 242 / 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(246 246 242 / 0.07) 1px, transparent 1px);
+    linear-gradient(to right, rgb(242 239 232 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(242 239 232 / 0.06) 1px, transparent 1px);
   background-size: 56px 56px;
   -webkit-mask-image: linear-gradient(to left, #000, transparent 70%);
   mask-image: linear-gradient(to left, #000, transparent 70%);
@@ -770,7 +773,7 @@ main > .band,
 }
 
 .contact-lead {
-  color: var(--on-denim-2);
+  color: var(--on-band-2);
 }
 
 .email-row {
@@ -789,16 +792,16 @@ main > .band,
 }
 
 .contact .button-secondary {
-  border-color: rgb(246 246 242 / 0.5);
-  color: var(--on-denim);
+  border-color: rgb(242 239 232 / 0.4);
+  color: var(--on-band);
 }
 
 @media (hover: hover) {
-  .contact .button-secondary:hover { border-color: var(--on-denim); }
+  .contact .button-secondary:hover { border-color: var(--on-band); }
 }
 
 .copy-status {
-  color: var(--on-denim-2);
+  color: var(--on-band-2);
   font-size: var(--t-secondary);
 }
 
@@ -883,7 +886,7 @@ main > .band,
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.5) 50%, transparent 70%);
+    background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.3) 50%, transparent 70%);
     transform: translateX(-100%);
   }
 
@@ -908,7 +911,7 @@ main > .band,
 
 @keyframes mark-in {
   from {
-    background-size: 0% 0.34em;
+    background-size: 0% 0.14em;
   }
 }
 
