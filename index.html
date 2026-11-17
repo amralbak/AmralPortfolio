@@ -1,324 +1,290 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mediaqueries.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amral Baksh — Software Engineer</title>
+  <meta name="description" content="Amral Baksh is a Computer Science student at the University at Buffalo (May 2027) working on systems and security: encrypted storage, secure messaging and real-time imaging pipelines.">
+  <meta name="theme-color" content="#ECEDEA">
+
+  <!-- TODO: confirm the live URL; these assume GitHub Pages. -->
+  <link rel="canonical" href="https://amralbak.github.io/AmralPortfolio/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Amral Baksh — Software Engineer">
+  <meta property="og:description" content="Computer Science at the University at Buffalo, graduating May 2027. Systems and security: encrypted storage, secure messaging, real-time imaging.">
+  <meta property="og:url" content="https://amralbak.github.io/AmralPortfolio/">
+  <meta property="og:image" content="https://amralbak.github.io/AmralPortfolio/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Portrait of Amral Baksh in a dark suit and tie">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Amral Baksh — Software Engineer">
+  <meta name="twitter:description" content="Computer Science at the University at Buffalo, graduating May 2027. Systems and security.">
+  <meta name="twitter:image" content="https://amralbak.github.io/AmralPortfolio/assets/img/og-image.jpg">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
 </head>
 <body>
-    <nav id="desktop-nav">
-        <div class="logo">Amral Baksh</div>
-        <div> 
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="wordmark" href="#top">Amral Baksh</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+      Menu
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="assets/RESUMEspacex.pdf" target="_blank" rel="noopener">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a></li>
+      </ul>
     </nav>
-    <nav id="hamburger-nav">
-        <div class="logo">Amral Baksh</div>
-        <div class="hamburger-menu">
-            <div class="hamburger-icon" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="menu-links">
-            <li><a href="#about" onclick="toggleMenu()">About</a></li>
-            <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-            <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-        </div>
-     </div> 
-    </nav>
-    <section id="profile">
-        <div class="section__pic-container">
-            <img src="./assets/amral-pic.png" alt="Amral Baksh profile picture">
-        </div>
-        <div class="section__text">
-            <p class="section__text__p1">Hello, I'm</p>
-            <h1 class="title">Amral Baksh</h1>
-            <p class="section__text__p2">B.Sc. Computer Science at University at Buffalo</p>
-            <div class="btn-container">
-                <button class="btn btn-color-2" onclick="window.open('./assets/RESUMEspacex.pdf')">Download CV</button>
-                <button class="btn btn-color-1" onclick="location.href='./#contact'">
-                    Contact Info
-                </button>
-            </div>
-        <div id="socials-container">
-        <img src="./assets/linkedin.png" alt="My LinkedIn Profile"
-            class="icon" onclick="location.href= 'https://www.linkedin.com/in/amralbaksh16/'">
-        <img src="./assets/github.png" alt="My Github Profile"
-            class="icon" onclick="location.href= 'https://github.com/amralbak'">
-        </div>
-    </section>
-    <section id="about">
-        <p class="section__text__p1">Get To Know More</p>
-        <h1 class="title">About Me</h1>
-        <div class="section-container">
-            <div class="section__pic-container">
-                <img src="./assets/me.jpeg" 
-                alt="Profile Picture" 
-                class="about-pic">
-            </div>
-            <div class="about-details-container">
-                <div class="about-containers">
-                        <div class="details-container">
-                            <img src="./assets/education.png" 
-                            alt="Education icon" 
-                            class="icon">
-                            <h3>Education</h3>
-                            <p>Currently pursing B.SC. Bachelors Degree at University at Buffalo<br>Computer Science</p>
-                    </div>
-                </div>
-                <div class="text-container">
-                    <p>I’m a Computer Science undergraduate at the University at Buffalo with a focus on systems, security, 
-                        and performance-oriented software. I’ve worked on research projects involving distributed encrypted storage, 
-                        secure device-to-device communication, and GPU-accelerated medical imaging systems. Through hands-on experience 
-                        in research and team-based projects, I’ve gained exposure to low-level programming, cryptographic protocols, 
-                        multithreading, and hardware–software integration. I enjoy building software that is both 
-                        technically rigorous and impactful, and I’m especially interested in roles that sit at the intersection of systems engineering, 
-                        security, and real-world applications.</p>
-                </div>
-            </div>
-        </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#experience'">
-        >
-    </section>
-    <section id="experience">
-        <p class="section__text__p1">Explore My</p>
-        <h1 class="title">Experience</h1>
-        <div class="experience-details-container">
-            <div class="about-containers">
+  </header>
 
-  <!-- OCT PROJECT -->
-  <div class="details-container project-experience">
-    <div class="article-container">
-      <img src="./assets/oct.png"
-           alt="OCT Imaging System"
-           class="project-pic">
-    </div>
-    <h3 class="experience-sub-title">OCT Imaging System</h3>
-    <p>
-      Integrated an industrial camera into a GPU-accelerated OCT imaging pipeline,
-      focusing on real-time acquisition and performance.
-    </p>
-  </div>
-
-  <!-- ENCRYPTED STORAGE PROJECT -->
-  <div class="details-container project-experience">
-    <div class="article-container">
-      <img src="./assets/securecomm.png"
-           alt="Encrypted Storage System"
-           class="project-pic">
-    </div>
-    <h3 class="experience-sub-title">Encrypted Storage System</h3>
-    <p>
-      Collaborated on a distributed encrypted storage system with secure device-to-device
-      communication and cryptographic key management.
-    </p>
-  </div>
-
-</div>
-            <div class="about-containers">
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Frontend Development</h2>
-                    
-                    <div class="article-container">
-                        <article>
-                            <img src="assets/checkmark.png" 
-                            alt="Experience icon" 
-                            class="icon">
-                            <div>
-                                <h3>HTML</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="assets/checkmark.png" 
-                            alt="Experience icon" 
-                            class="icon">
-                            <div>
-                                <h3>CSS</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="assets/checkmark.png" 
-                            alt="Experience icon" 
-                            class="icon">
-                            <div>
-                                <h3>Javascript</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Backend Development</h2>
-                    <div class="article-container">
-                        <article>
-                            <img src="assets/checkmark.png" 
-                            alt="Experience icon" 
-                            class="icon">
-                            <div>
-                                <h3>Python</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="assets/checkmark.png" 
-                            alt="Experience icon" 
-                            class="icon">
-                            <div>
-                                <h3>Java</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="assets/checkmark.png" 
-                            alt="Experience icon" 
-                            class="icon">
-                            <div>
-                                <h3>C</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-photo">
+        <img src="assets/img/rooftop-800.webp"
+             srcset="assets/img/rooftop-480.webp 480w, assets/img/rooftop-800.webp 800w, assets/img/rooftop-1200.webp 1200w, assets/img/rooftop-1600.webp 1600w"
+             sizes="(min-width: 768px) 45vw, 100vw"
+             width="1200" height="1600"
+             fetchpriority="high"
+             alt="Amral Baksh on a rooftop terrace under an overcast sky, looking out over the city toward the water.">
+      </div>
+      <div class="hero-text">
+        <h1 id="hero-title">Amral Baksh</h1>
+        <p class="hero-role">Software engineer focused on systems and security.</p>
+        <p class="hero-line">B.Sc. Computer Science at the University at Buffalo, graduating May&nbsp;2027. I work close to the hardware: encrypted storage, secure messaging and real-time imaging pipelines.</p>
+        <div class="actions">
+          <a class="button button-primary" href="assets/RESUMEspacex.pdf" target="_blank" rel="noopener">View resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
+          <a class="button button-secondary" href="mailto:amralbaksh100@gmail.com">Email me</a>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'">
+      </div>
     </section>
-    <section id="projects">
-        <p class="section__text__p1">Browse My Recent</p>
-        <h1 class="title">Projects</h1>
-        <div class="experience-details-container">
-            <!-- PROJECT EXPERIENCE BOXES -->
 
-            <div class="about-containers">
-                <div class="project-grid">
-                    <div class="details-container color-container">
-                        <div class="article-container">
-                            <img src="./assets/web.jpeg" 
-                            alt="Project 1" 
-                            class="project-pic">
-                        </div>
-                        <h2 class="experience-sub-title project-title">Personal Portfolio Website</h2>
-                        <div class="btn-container">
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/amralbak'">
-                                GitHub
-                                </button>
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/amralbak'">
-                            Live Demo
-                            </button>
-                        </div>
-                    </div>
-                    <div class="details-container color-container">
-                        <div class="article-container">
-                            <img src="./assets/gol.png" 
-                            alt="Project 1" 
-                            class="project-pic">
-                        </div>
-                        <h2 class="experience-sub-title project-title">Conway’s Game of Life Implementation</h2>
-                        <div class="btn-container">
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/amralbak'">
-                                GitHub
-                                </button>
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/amralbak'">
-                            Live Demo
-                            </button>
-                        </div>
-                    </div>
-                    <div class="details-container color-container">
-                        <div class="article-container">
-                            <img src="./assets/mess.jpg" 
-                            alt="Project 1" 
-                            class="project-pic">
-                        </div>
-                        <h2 class="experience-sub-title project-title">Instant Messenger Application</h2>
-                        <div class="btn-container">
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/amralbak'">
-                                GitHub
-                                </button>
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/amralbak'">
-                            Live Demo
-                            </button>
-                        </div>
-                    </div>
-                    <div class="details-container color-container">
-                        <div class="article-container">
-                            <img src="./assets/malloc3.png" 
-                            alt="Project 1" 
-                            class="project-pic">
-                        </div>
-                        <h2 class="experience-sub-title project-title">Multi-pool Memory Allocator</h2>
-                        <div class="btn-container">
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/amralbak'">
-                                GitHub
-                                </button>
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/amralbak'">
-                            Live Demo
-                            </button>
-                        </div>
-                    </div>
-                    <div class="details-container color-container">
-                        <div class="article-container">
-                            <img src="./assets/medlib2.png" 
-                            alt="Project 1" 
-                            class="project-pic">
-                        </div>
-                        <h2 class="experience-sub-title project-title">Media Library</h2>
-                        <div class="btn-container">
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/amralbak'">
-                                GitHub
-                                </button>
-                            <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/amralbak'">
-                            Live Demo
-                            </button>
-                        </div>
-                    </div>
-                     </div>
-            </div>
+    <section class="section" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
+      <div class="section-body">
+        <div class="about">
+          <img class="about-photo"
+               src="assets/img/headshot-320.webp"
+               srcset="assets/img/headshot-320.webp 320w, assets/img/headshot-640.webp 640w"
+               sizes="(min-width: 768px) 13rem, 10rem"
+               width="640" height="800" loading="lazy" decoding="async"
+               alt="Portrait of Amral Baksh in a dark suit and tie.">
+          <div class="prose">
+            <p>I study Computer Science at the University at Buffalo, with a focus on systems, security and performance-oriented software. My research and team projects have covered distributed encrypted storage, secure device-to-device communication and GPU-accelerated medical imaging, which gave me hands-on experience with low-level programming, cryptographic protocols, multithreading and hardware–software integration.</p>
+            <p>I like building software that is technically rigorous and useful in the real world, and I’m looking for roles where systems engineering and security meet.</p>
+          </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'">
-    </section>
-    <section id="contact">
-        <p class="section__text__p1">Get in Touch</p>
-        <h1 class="title">Contact Me</h1>
-        <div class="contact-info-upper-container">
-            <div class="contact-info-container">
-                <img src="./assets/email.png" 
-                alt="Email icon"
-                class="icon contact-icon email-icon">
-                <p><a href="mailto:amralbaksh100@gmail.com">Amralbaksh100@gmail.com</a></p>
-            </div>
-            <div class="contact-info-container">
-                <img src="./assets/linkedin.png" 
-                alt="LinkedIn icon"
-                class="icon contact-icon">
-                <p><a href="https://www.linkedin.com/in/amralbaksh16/">LinkedIn</a></p>
-            </div>
+
+        <div class="facts">
+          <div class="fact-group">
+            <h3>Education</h3>
+            <p>B.Sc. Computer Science, minor in Cybersecurity<br>University at Buffalo, expected May 2027</p>
+            <p class="secondary">Dean’s List, Fall 2023 and Spring 2024. Coursework in data structures, operating systems, computer architecture and machine learning.</p>
+          </div>
+          <div class="fact-group">
+            <h3>Skills</h3>
+            <dl class="skills">
+              <div><dt>Languages</dt><dd>C, C++, Java, Python, JavaScript</dd></div>
+              <div><dt>Web</dt><dd>HTML, CSS, JavaScript, Flask, Firebase</dd></div>
+              <div><dt>Systems</dt><dd>Multithreading and concurrency, memory management, real-time systems, CUDA, Linux, Git</dd></div>
+            </dl>
+          </div>
         </div>
+      </div>
     </section>
-    <footer>
-        <nav>
-            <div class="nav-links-container">
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-    
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <h2 id="experience-title">Experience</h2>
+      <div class="section-body">
+        <ul class="entries">
+          <li>
+            <article class="entry">
+              <div class="entry-text">
+                <h3>OCT Imaging System</h3>
+                <p class="entry-role">Research Assistant, Biomedical Engineering Department, University at Buffalo. May–Aug 2025</p>
+                <p>Integrated an industrial camera into a GPU-accelerated optical coherence tomography (OCT) imaging pipeline, focusing on real-time acquisition and performance.</p>
+                <p>Brought a XIMEA camera into the C# acquisition system and synchronized the camera, frame grabber and DAQ for high-speed capture, then debugged latency, synchronization and throughput in the multithreaded data pipeline.</p>
+                <!-- TODO: add one measured result here (e.g. sustained frame rate or end-to-end latency) if you have the number. -->
+                <ul class="stack" aria-label="Technologies">
+                  <li>C#</li><li>multithreading</li><li>GPU acceleration</li><li>XIMEA camera</li><li>frame grabber and DAQ</li>
                 </ul>
+              </div>
+              <img class="entry-image"
+                   src="assets/img/oct-480.webp"
+                   srcset="assets/img/oct-480.webp 480w, assets/img/oct-939.webp 939w"
+                   sizes="(min-width: 768px) 14rem, calc(100vw - 2rem)"
+                   width="939" height="587" loading="lazy" decoding="async"
+                   alt="Grayscale OCT cross-section of retinal tissue layers.">
+            </article>
+          </li>
+          <li>
+            <article class="entry">
+              <div class="entry-text">
+                <h3>Encrypted Storage System</h3>
+                <p class="entry-role">Team member, Computer Science and Engineering Department, University at Buffalo. Aug 2025–present</p>
+                <p>Collaborating on a distributed encrypted storage system with secure device-to-device communication and cryptographic key management.</p>
+                <p>Implemented secure device-to-device communication and extended the key management, authentication and publish/subscribe messaging components, with a focus on correctness, fault tolerance and low-latency message passing.</p>
+                <!-- TODO: add the implementation language and one concrete result if you can share them. -->
+                <ul class="stack" aria-label="Technologies">
+                  <li>cryptographic key management</li><li>authentication</li><li>publish/subscribe messaging</li><li>distributed systems</li>
+                </ul>
+              </div>
+              <img class="entry-image"
+                   src="assets/img/securecomm-480.webp"
+                   srcset="assets/img/securecomm-480.webp 480w, assets/img/securecomm-691.webp 691w"
+                   sizes="(min-width: 768px) 14rem, calc(100vw - 2rem)"
+                   width="691" height="432" loading="lazy" decoding="async"
+                   alt="Illustration of two people exchanging data through a shield-and-lock security hub.">
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="research" aria-labelledby="research-title">
+      <h2 id="research-title">Research</h2>
+      <div class="section-body">
+        <article class="research">
+          <figure class="research-photo">
+            <img src="assets/img/poster-480.webp"
+                 srcset="assets/img/poster-480.webp 480w, assets/img/poster-800.webp 800w, assets/img/poster-1200.webp 1200w"
+                 sizes="(min-width: 768px) 20rem, calc(100vw - 2rem)"
+                 width="800" height="1000" loading="lazy" decoding="async"
+                 alt="Amral Baksh standing beside his research poster at a poster session.">
+            <figcaption>Presenting the poster.</figcaption>
+          </figure>
+          <div class="research-text">
+            <h3>Predicting Prolonged Hospital Stay from Electronic Health Records</h3>
+            <p class="entry-role">CSTEP, University at Buffalo. Hospital Occupancy Monitoring Project, School of Management. Faculty mentor: Haimonti Dutta.</p>
+            <!-- TODO: add the presentation date. -->
+            <div class="prose">
+              <p>Through UB’s CSTEP program, I worked with the School of Management’s Hospital Occupancy Monitoring Project, mentored by Haimonti Dutta, on predicting which emergency-department patients will have long hospital stays. Using MIMIC-IV-ED data and Deep Patient stacked denoising autoencoders to learn patient representations, we found that adding clinical notes to structured records lowered prediction error (RMSE).</p>
             </div>
-        </nav>
-        <p>Copyright &#169; 2025 Amral Baksh. All Rights Reserved.</p>
-    </footer>
-    <script src="script.js"></script>
+            <ul class="stack" aria-label="Methods and data">
+              <li>MIMIC-IV-ED</li><li>Deep Patient</li><li>stacked denoising autoencoders</li><li>clinical notes</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+      <div class="section-body">
+        <p class="section-intro">Personal and course projects. Write-ups and code links are on the way.</p>
+        <!--
+          To add a code link to a project, put this after its stack list:
+          <p class="project-links"><a href="https://github.com/amralbak/REPO">View code<span class="visually-hidden"> for PROJECT NAME</span></a></p>
+          TODO: add your role on each project (solo, course team, etc.).
+        -->
+        <div class="projects">
+          <article class="project">
+            <img src="assets/img/allocator-480.webp"
+                 srcset="assets/img/allocator-480.webp 480w, assets/img/allocator-960.webp 960w"
+                 sizes="(min-width: 768px) 24rem, calc(100vw - 2rem)"
+                 width="960" height="600" loading="lazy" decoding="async"
+                 alt="Abstract diagram of coloured memory blocks on a circuit-like grid.">
+            <h3>Multi-pool Memory Allocator</h3>
+            <p>A custom memory allocator in C, built to reduce fragmentation and improve allocation efficiency in performance-sensitive systems.</p>
+            <ul class="stack" aria-label="Technologies"><li>C</li><li>memory management</li></ul>
+          </article>
+          <article class="project">
+            <img src="assets/img/messenger-480.webp"
+                 srcset="assets/img/messenger-480.webp 480w, assets/img/messenger-960.webp 960w"
+                 sizes="(min-width: 768px) 24rem, calc(100vw - 2rem)"
+                 width="960" height="600" loading="lazy" decoding="async"
+                 alt="Outline icon of a chat bubble.">
+            <h3>Instant Messenger</h3>
+            <p>An instant messaging application in C with custom packet encoding and decoding.</p>
+            <ul class="stack" aria-label="Technologies"><li>C</li><li>packet encoding</li></ul>
+          </article>
+          <article class="project">
+            <img src="assets/img/game-of-life-480.webp"
+                 srcset="assets/img/game-of-life-480.webp 480w, assets/img/game-of-life-960.webp 960w"
+                 sizes="(min-width: 768px) 24rem, calc(100vw - 2rem)"
+                 width="960" height="600" loading="lazy" decoding="async"
+                 alt="A Game of Life grid with scattered live cells in black.">
+            <h3>Conway’s Game of Life</h3>
+            <p>Conway’s Game of Life in C, with efficient grid updates.</p>
+            <ul class="stack" aria-label="Technologies"><li>C</li></ul>
+          </article>
+          <article class="project">
+            <img src="assets/img/media-library-480.webp"
+                 srcset="assets/img/media-library-480.webp 480w, assets/img/media-library-960.webp 960w"
+                 sizes="(min-width: 768px) 24rem, calc(100vw - 2rem)"
+                 width="960" height="600" loading="lazy" decoding="async"
+                 alt="Illustration of a futuristic library with glowing display stands.">
+            <h3>Media Library</h3>
+            <!-- TODO: describe what the Media Library does and what it's built with. -->
+            <p>Details coming soon.</p>
+          </article>
+          <article class="project">
+            <img src="assets/img/portfolio-480.webp"
+                 srcset="assets/img/portfolio-480.webp 480w, assets/img/portfolio-960.webp 960w"
+                 sizes="(min-width: 768px) 24rem, calc(100vw - 2rem)"
+                 width="960" height="600" loading="lazy" decoding="async"
+                 alt="A laptop showing code on a bright desk.">
+            <h3>Personal Portfolio Website</h3>
+            <p>This site: a responsive, accessible portfolio in plain HTML, CSS and JavaScript.</p>
+            <ul class="stack" aria-label="Technologies"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="section">
+        <h2 id="contact-title">Contact</h2>
+        <div class="section-body">
+          <p class="contact-lead">Email is the quickest way to reach me.</p>
+          <div class="email-row">
+            <a class="email-link" href="mailto:amralbaksh100@gmail.com">amralbaksh100@gmail.com</a>
+            <button class="button button-secondary copy-email" type="button" data-copy="amralbaksh100@gmail.com" hidden>Copy email</button>
+            <span class="copy-status" role="status" aria-live="polite"></span>
+          </div>
+          <ul class="contact-links">
+            <li>
+              <a href="https://www.linkedin.com/in/amralbaksh16/">
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/amralbak">
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href="assets/RESUMEspacex.pdf" target="_blank" rel="noopener">
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20"><path d="M5 2.75h6.5L15.25 6.5v10.75H5z M11.25 2.75V6.75h4 M7.5 10.25h5 M7.5 13.25h5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/></svg>
+                Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span data-year>2026</span> Amral Baksh</p>
+  </footer>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
