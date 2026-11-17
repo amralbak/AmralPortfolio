@@ -66,19 +66,9 @@ crop_ratio(suit, 1, cy=0.3).resize((180, 180), Image.LANCZOS).save(
     ROOT / "apple-touch-icon.png", "PNG", optimize=True)
 print("apple-touch-icon.png  180x180")
 
-# Research: poster session, cropped below the projector screen.
-poster = crop_frac(load(SRC / "poster.jpg"), 0, 0.17, 1, 1)
+# Research: poster session, cropped so the projector screen is out of frame.
+poster = crop_frac(load(SRC / "poster.jpg"), 0, 0.23, 1, 1)
 save_widths(crop_ratio(poster, 4 / 5, cx=0.6, cy=0), "poster", [480, 800, 1200])
 
-# Experience and project images: 16:10 so the grid lines up.
-for src, name in [
-    ("oct.png", "oct"),
-    ("securecomm.png", "securecomm"),
-    ("web.jpeg", "portfolio"),
-    ("gol.png", "game-of-life"),
-    ("mess.jpg", "messenger"),
-    ("malloc3.png", "allocator"),
-    ("medlib2.png", "media-library"),
-]:
-    im = crop_ratio(load(ROOT / "assets" / src), 16 / 10)
-    save_widths(im, name, [480, 960])
+# Experience: the one real work image, 16:10.
+save_widths(crop_ratio(load(ROOT / "assets" / "oct.png"), 16 / 10), "oct", [480, 960])

@@ -427,12 +427,6 @@ main > .band,
   margin-top: var(--s-4);
 }
 
-.section-intro {
-  max-width: var(--measure);
-  margin-bottom: var(--s-8);
-  color: var(--ink-2);
-}
-
 /* Shared metadata lines */
 .entry-role {
   margin-top: var(--s-1);
@@ -606,27 +600,26 @@ main > .band,
    ========================================================================== */
 .projects {
   display: grid;
-  /* At most three columns; two from ~480px; one on phones. */
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, max(14rem, (100% - 2 * var(--s-8)) / 3)), 1fr));
-  gap: var(--s-12) var(--s-8);
+  gap: var(--s-8) var(--s-12);
 }
 
-.project img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  background: var(--surface);
-  border: 1px solid var(--rule);
+@media (min-width: 768px) {
+  .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.project {
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule-strong);
 }
 
 .project h3 {
-  margin-top: var(--s-4);
   font-size: var(--t-1);
   font-weight: 500;
 }
 
 .project p {
   margin-top: var(--s-2);
+  max-width: var(--measure);
 }
 
 .project .stack {
