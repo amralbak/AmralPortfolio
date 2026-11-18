@@ -1,3 +1,26 @@
+/* Fonts (self-hosted, OFL-licensed; latin subset) */
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/ibm-plex-sans-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("assets/fonts/newsreader-latin-opsz-normal.woff2") format("woff2");
+}
+
 /* Tokens */
 :root {
   color-scheme: light;
@@ -12,14 +35,12 @@
   --ink-2: #244b3a;         /* forest, secondary text (8.9:1; 7.8:1 on bands) */
   --rule: rgb(16 29 24 / 0.1);
   --rule-strong: rgb(16 29 24 / 0.24);
-  --grid-line: rgb(16 29 24 / 0.06);
   --accent: var(--sage);    /* underlines, photo frame */
   --accent-fill: var(--forest); /* button fill, paper label (8.9:1) */
   --accent-hover: #2f5c48;
   --accent-text: var(--sage);   /* large display text only (3.5:1), e.g. "Baksh" */
   --on-accent: #f7f4ea;
   --glow: rgb(95 140 109 / 0.18);   /* sage light under the cursor */
-  --marker: rgb(95 140 109 / 0.3);
   --band-strong: var(--forest);     /* contact band */
   --on-band: #f7f4ea;
   --on-band-2: #dfe8d9;     /* 7.8:1 on forest */
@@ -376,6 +397,7 @@ a {
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: -0.025em;
+  text-shadow: 0 2px 28px rgb(16 29 24 / 0.45), 0 1px 3px rgb(16 29 24 / 0.3);
 }
 .hero h1 .w {
   display: inline-block;

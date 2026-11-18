@@ -57,7 +57,8 @@ function setCurrent(id) {
 const spy = new IntersectionObserver((entries) => {
   for (const entry of entries) if (entry.isIntersecting) setCurrent(entry.target.id);
 }, { rootMargin: '-45% 0px -50% 0px' });
-navLinks.forEach((_, id) => {
+// The hero (#top) is observed too, so no link is marked while it is in view.
+['top', ...navLinks.keys()].forEach((id) => {
   const section = document.getElementById(id);
   if (section) spy.observe(section);
 });
@@ -102,6 +103,3 @@ if (photoButton && toast) {
     hideTimer = setTimeout(() => toast.classList.remove('is-shown'), 2500);
   });
 }
-
-// Footer year.
-document.querySelector('[data-year]').textContent = new Date().getFullYear();

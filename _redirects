@@ -1,0 +1,3 @@
+# Developer-only files in the repo are not part of the website.
+/tools/*      /404.html  404!
+/.gitignore   /404.html  404!
