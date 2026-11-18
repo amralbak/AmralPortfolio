@@ -327,6 +327,7 @@ a {
 .photo-button {
   position: absolute;
   inset: 0;
+  transform-origin: 50% 25%; /* zoom grows downward, away from the hair */
   display: block;
   width: 100%;
   padding: 0;
@@ -427,9 +428,6 @@ a {
   .hero .button-primary:hover { background: var(--pale-sage); border-color: var(--pale-sage); }
   .hero .button-secondary:hover { border-color: var(--on-band); }
 }
-.scroll-cue {
-  display: none;
-}
 .photo-toast {
   position: absolute;
   top: var(--s-6);
@@ -463,34 +461,13 @@ a {
 }
 @media (min-width: 768px) {
   .photo-button img {
-    object-position: 50% 72%;
+    object-position: 50% 58%; /* keeps the full head of hair in frame on wide screens */
   }
   .hero-text {
     padding: 0 var(--s-12) var(--s-16);
   }
   .hero-role {
     font-size: var(--t-3);
-  }
-  .scroll-cue {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--s-3);
-    position: absolute;
-    right: var(--s-12);
-    bottom: var(--s-16);
-    z-index: 1;
-    color: var(--on-band-2);
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    writing-mode: vertical-rl;
-  }
-  .scroll-cue::after {
-    content: "";
-    width: 1px;
-    height: 3rem;
-    background: currentColor;
   }
 }
 
@@ -970,8 +947,7 @@ html.lenis body {
 }
 .js-motion .hero-role,
 .js-motion .hero-line,
-.js-motion .actions,
-.js-motion .scroll-cue {
+.js-motion .actions {
   opacity: 0;
   transform: translateY(24px);
 }
@@ -982,35 +958,6 @@ html.lenis body {
 /* Images scale while they expand; keep that from widening the page */
 main {
   overflow-x: clip;
-}
-
-/* Cursor: a ring that follows the mouse, grows over links and cards, and
-   becomes a label over the hero photo (mouse only; created by motion.js) */
-.cursor-ring,
-.cursor-label {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  pointer-events: none;
-  opacity: 0;
-}
-.cursor-ring {
-  width: 36px;
-  height: 36px;
-  margin: -18px 0 0 -18px;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  mix-blend-mode: difference;
-}
-.cursor-label {
-  padding: var(--s-1) var(--s-3);
-  border-radius: 999px;
-  background: var(--canvas);
-  color: var(--ink);
-  font-size: 0.8125rem;
-  white-space: nowrap;
-  transform: translate(-50%, -50%);
 }
 
 @keyframes fade {
