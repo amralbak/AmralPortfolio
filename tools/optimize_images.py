@@ -64,7 +64,7 @@ og.save(OUT / "og-image.jpg", "JPEG", quality=82, optimize=True, progressive=Tru
 print("og-image.jpg  1200x630")
 
 # Touch icon: square crop of the face.
-crop_ratio(suit, 1, cy=0.3).resize((180, 180), Image.LANCZOS).save(
+crop_ratio(suit, 1, cy=0.3).resize((180, 180), Image.LANCZOS).quantize(colors=256).save(
     ROOT / "apple-touch-icon.png", "PNG", optimize=True)
 print("apple-touch-icon.png  180x180")
 
