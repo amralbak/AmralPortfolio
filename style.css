@@ -670,9 +670,17 @@ main > .band,
   margin-top: var(--s-3);
 }
 
-.entry-image {
+.entry-figure {
   flex: 0 1 14rem;
   width: 14rem;
+}
+.entry-figure figcaption {
+  margin-top: var(--s-2);
+  color: var(--ink-2);
+  font-size: var(--t-secondary);
+}
+.entry-image {
+  width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border-radius: 6px;
